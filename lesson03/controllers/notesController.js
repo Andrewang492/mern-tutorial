@@ -15,14 +15,20 @@ const getAllNotes = asyncHandler(async (req, res) => {
     if (!notes?.length) {
         return res.status(400).json({ message: 'No notes found' })
     }
-    return res.json(notes)
+    // return res.json(notes)
     // Add username to each note before sending the response 
     // See Promise.all with map() here: https://youtu.be/4lqJBBEpjRE 
     // You could also do this with a for...of loop
-    // const notesWithUser = await Promise.all(notes.map(async (note) => {
-    //     const user = await User.findById(note.user).lean().exec()
-    //     return { ...note, username: user.username }
-    // }))
+    const notesWithUser = await Promise.all(notes.map(async (note) => {
+        console.log(`${note.user}`)
+        console.log(note.user.toString())
+        const user = await User.find({_id: note.user}).lean().exec()
+        // TODO would like to find using findById function.
+
+        // const user = await User.findById(note.user.toString()).lean().exec()
+
+        return { ...note, username: user.username }
+    }))
 
     res.json(notesWithUser)
 })
@@ -112,7 +118,7 @@ const deleteNote = asyncHandler(async (req, res) => {
 
     const result = await note.deleteOne()
 
-    const reply = `Note '${result.title}' with ID ${result._id} deleted`
+    const reply = `Note '${note.title}' with ID ${note._id} deleted`
 
     res.json(reply)
 })
