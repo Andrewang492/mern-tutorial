@@ -1,0 +1,13 @@
+lesson3
+Learnt how to set up mongoDB.
+Need to install mongoose package.
+Learnt about environment variables using dotenv package.
+Created Note and User models. These are schemas for MongoDB.
+
+lesson04
+add routing for User model/schema. Need routing and controllers.
+install express-asyc-handler and bcrypt.
+Creating a controller (CRUD method for a route)
+Using Postman to test API.
+
+process - route in server.js. Create route in directory. Create the controller method.
