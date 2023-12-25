@@ -5,3 +5,5 @@ export const apiSlice = createApi({
     tagTypes: ['Note', 'User'],
     endpoints: builder => ({})
 })
+
+//pretty much starter code.
