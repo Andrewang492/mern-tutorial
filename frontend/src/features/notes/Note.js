@@ -4,8 +4,7 @@ import { useNavigate } from 'react-router-dom'
 
 import { useSelector } from 'react-redux'
 import { selectNoteById } from './notesApiSlice'
-import { selectUserById, selectUserIds, selectUsersResult, useGetUsersQuery } from '../users/usersApiSlice'
-import { createSelector } from '@reduxjs/toolkit'
+import { useGetUsersQuery } from '../users/usersApiSlice'
 
 const Note = ({ noteId }) => {
 

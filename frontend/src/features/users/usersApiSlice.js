@@ -16,7 +16,9 @@ export const usersApiSlice = apiSlice.injectEndpoints({
             validateStatus: (response, result) => {
                 return response.status === 200 && !result.isError // rrecommended way fo chceking - can have error with 200 status.
             },
-            keepUnusedDataFor: 5, // default 60 seconds. Whether data will be refered to in cache or if needs new data.
+            // keepUnusedDataFor: 5, 
+            // default 60 seconds. Whether data will be refered to in cache or if needs new data.
+            // i.e if there are no subscriptions, data is useless and will refresh in some time
             transformResponse: responseData => {
                 const loadedUsers = responseData.map(user => {
                     user.id = user._id // the normalise needs an id property.
@@ -24,7 +26,7 @@ export const usersApiSlice = apiSlice.injectEndpoints({
                 });
                 return usersAdapter.setAll(initialState, loadedUsers)
             },
-            providesTags: (result, error, arg) => { //provide tags that can be invalidated.
+            providesTags: (result, error, arg) => { //provide tags that can be invalidated.  Will alawys have this id LIST object.
                 if (result?.ids) {
                     return [
                         { type: 'User', id: 'LIST' },
@@ -32,12 +34,49 @@ export const usersApiSlice = apiSlice.injectEndpoints({
                     ]
                 } else return [{ type: 'User', id: 'LIST' }] // if it doesnt happen to have ids (somehow)
             }
+        }), 
+        addNewUser: builder.mutation({
+            query: initialUserData => ({
+                url: '/users',
+                method: 'POST',
+                body: {
+                    ...initialUserData,
+                }
+            }),
+            invalidatesTags: [
+                { type: 'User', id: "LIST" }
+            ]
+        }),
+        updateUser: builder.mutation({
+            query: initialUserData => ({
+                url: '/users',
+                method: 'PATCH',
+                body: {
+                    ...initialUserData,
+                }
+            }),
+            invalidatesTags: (result, error, arg) => [
+                { type: 'User', id: arg.id }
+            ]
+        }),
+        deleteUser: builder.mutation({
+            query: ({ id }) => ({
+                url: `/users`,
+                method: 'DELETE',
+                body: { id }
+            }),
+            invalidatesTags: (result, error, arg) => [
+                { type: 'User', id: arg.id }
+            ]
         }),
     }),
 })
 
 export const {
     useGetUsersQuery, //automatically generated
+    useAddNewUserMutation,
+    useUpdateUserMutation,
+    useDeleteUserMutation,
 } = usersApiSlice
 
 // returns the query result object
