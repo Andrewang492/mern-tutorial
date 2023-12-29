@@ -10,3 +10,10 @@ install express-asyc-handler and bcrypt.
 Creating a controller (CRUD method for a route)
 Using Postman to test API.
 process: route in server.js. Create route in directory. Create the controller method.
+
+lesson 8
+Auth - needed to create verifyJWT, install jwt and make changes to controllers.
+Add the middleware usage to all routes of UserRoutes and NotesRoutes.
+Created a loginlimiter middleware.
+For postman, remove the secure tag from a cookie since in development using http, not https.
+Creating tokens with jwt has expiry time given by 'expiresIn'.
