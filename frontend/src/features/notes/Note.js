@@ -15,8 +15,8 @@ const Note = ({ noteId }) => {
     const usersRes = useGetUsersQuery();
     const users = usersRes.data;
     if (usersRes.isSuccess) {
-        console.log('priting all users:')
-        console.log(users)
+        // console.log('priting all users:')
+        // console.log(users)
     }
 
 
@@ -30,8 +30,8 @@ const Note = ({ noteId }) => {
         let username = 'finding username...'
         if (users) {
             const user = users.entities[note.user]
-            console.log('printing the user')
-            console.log(user)
+            // console.log('printing the user')
+            // console.log(user)
             username = user.username
         }
         return (

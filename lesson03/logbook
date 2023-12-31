@@ -17,3 +17,6 @@ Add the middleware usage to all routes of UserRoutes and NotesRoutes.
 Created a loginlimiter middleware.
 For postman, remove the secure tag from a cookie since in development using http, not https.
 Creating tokens with jwt has expiry time given by 'expiresIn'.
+
+lesson 9 (frontend )
+Created Login page, and authSlice and authApiSlice.
