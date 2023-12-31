@@ -39,7 +39,7 @@ const baseQueryWithReauth = async (args, api, extraOptions) => {
         } else {
             // console.log('refresh result has no data, ie couldnt refresh the access token')
             if (refreshResult?.error?.status === 403) {
-                refreshResult.error.data.message = "Your login has expired. "
+                refreshResult.error.data.message = "Your login has expired."
                 // i.e refresh did not work.
             }
             return refreshResult

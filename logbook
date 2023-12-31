@@ -28,3 +28,4 @@ Added optional persistence to keep everything there if you pressed refresh. Need
 
 lesson 11
 Changed features so that it depends on your role. Created this useAuth hook that is used frequently to see who the logged in user is and their roles. Use jwt decode, and useSelector to find current token of logged in person for information.
+Created a requireAuth wrapper that stops pages from showing if the person is not logged in.
