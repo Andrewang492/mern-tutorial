@@ -51,6 +51,7 @@ const NewUserForm = () => {
             e.target.selectedOptions, //HTMLCollection, so create an array from it (after mapping using
             (option) => option.value // this anonymous function)
         )
+        console.log(values)
         setRoles(values)
     }
 

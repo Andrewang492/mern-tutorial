@@ -25,3 +25,6 @@ lesson 10
 Made changes so that would use the token to make requests.
 Tried to automaticallly use the refresh token if it could if the access token expired. 
 Added optional persistence to keep everything there if you pressed refresh. Needed to create a wrapper for App.js. Created the toggle for users to select.
+
+lesson 11
+Changed features so that it depends on your role. Created this useAuth hook that is used frequently to see who the logged in user is and their roles. Use jwt decode, and useSelector to find current token of logged in person for information.

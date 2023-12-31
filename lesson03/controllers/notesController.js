@@ -20,17 +20,18 @@ const getAllNotes = asyncHandler(async (req, res) => {
     // See Promise.all with map() here: https://youtu.be/4lqJBBEpjRE 
     // You could also do this with a for...of loop
     const notesWithUser = await Promise.all(notes.map(async (note) => {
-        console.log(`${note.user}`)
-        console.log(note.user.toString())
+        // console.log(`${note.user}`)
+        // console.log(note.user.toString())
         const user = await User.find({_id: note.user}).lean().exec()
         // TODO would like to find using findById function.
 
         // const user = await User.findById(note.user.toString()).lean().exec()
-
-        return { ...note, username: user.username }
+        // console.log(user[0]) // find returns an array it seems.
+        console.log({...note, username: user[0].username })
+        return { ...note, username: user[0].username }
     }))
 
-    res.json(notesWithUser)
+    res.json(notesWithUser) //TODO how does this work? its a function?
 })
 
 // @desc Create new note
