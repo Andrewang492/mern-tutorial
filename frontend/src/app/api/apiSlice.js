@@ -24,14 +24,14 @@ const baseQueryWithReauth = async (args, api, extraOptions) => {
     // If you want, handle other status codes, too
     if (result?.error?.status === 403) {
         console.log(result)
-        console.log('sending refresh token')
+        console.log('sending refresh token because status was 403.')
 
         // send refresh token to get new access token 
         const refreshResult = await baseQuery('/auth/refresh', api, extraOptions)
         console.log('refresh result')
         console.log(refreshResult)
         if (refreshResult?.data) {
-            console.log('refresh result has data')
+            console.log('refresh result has data (ie probably accessToken)')
             console.log({ ...refreshResult.data })
             console.log({ accessToken: refreshResult.data.accessToken })
 
@@ -48,7 +48,7 @@ const baseQueryWithReauth = async (args, api, extraOptions) => {
             }
             
         } else {
-            console.log('refresh result has no data')
+            console.log('refresh result has no data, ie couldnt refresh the access token')
             if (refreshResult?.error?.status === 403) {
                 refreshResult.error.data.message = "Your login has expired. "
                 // i.e refresh did not work.

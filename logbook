@@ -20,3 +20,8 @@ Creating tokens with jwt has expiry time given by 'expiresIn'.
 
 lesson 9 (frontend )
 Created Login page, and authSlice and authApiSlice.
+
+lesson 10
+Made changes so that would use the token to make requests.
+Tried to automaticallly use the refresh token if it could if the access token expired. 
+Added optional persistence to keep everything there if you pressed refresh. Needed to create a wrapper for App.js. Created the toggle for users to select.
