@@ -10,7 +10,7 @@ export const store = configureStore({
     },
     middleware: getDefaultMiddleware =>
         getDefaultMiddleware().concat(apiSlice.middleware), // just something you must have.
-    devTools: true
+    devTools: false
 })
 
 setupListeners(store.dispatch) //able to do some things with queries we write now - polling intervel, refetchonfcous...

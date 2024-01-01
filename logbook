@@ -36,3 +36,8 @@ Can stop using async handler to require('express-async-errors'). Then you don't 
 In frontend, changed prefetching somehow... and changed useSelector in Note.js, User.js, EditNote.js, NewNote.js to do a query instead.
 Memoised User and Note so doesnt rerender all the time.
 Can set title on different pages now, and can put loading spinner where appropriate.
+
+lesson 13 deployment
+Get fvilers disable react devtools to stop devtools (in index.js)
+Change store.js to remove redux devtools.
+Change url in apiSlice to technotes-api.onrender.com
