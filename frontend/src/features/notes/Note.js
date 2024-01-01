@@ -1,14 +1,17 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPenToSquare } from "@fortawesome/free-solid-svg-icons"
 import { useNavigate } from 'react-router-dom'
-
-import { useSelector } from 'react-redux'
-import { selectNoteById } from './notesApiSlice'
 import { useGetUsersQuery } from '../users/usersApiSlice'
+import { useGetNotesQuery } from './notesApiSlice'
+import { memo } from 'react'
 
 const Note = ({ noteId }) => {
+    const { note } = useGetNotesQuery("notesList", { //not using a selector anymore:
+        selectFromResult: ({ data }) => ({
+            note: data?.entities[noteId] //selects the note we're like for thanks to this selector on query.
+        }),
+    })
 
-    const note = useSelector(state => selectNoteById(state, noteId)) //have to find note from states store.
     const navigate = useNavigate()
 
     /*Self inserted!! To get username (very roundabout...) */
@@ -60,4 +63,6 @@ const Note = ({ noteId }) => {
 
     } else return null
 }
-export default Note
+const memoizedNote = memo(Note)
+
+export default memoizedNote // will only rerender if changes to data.

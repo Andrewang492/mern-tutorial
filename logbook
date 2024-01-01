@@ -29,3 +29,10 @@ Added optional persistence to keep everything there if you pressed refresh. Need
 lesson 11
 Changed features so that it depends on your role. Created this useAuth hook that is used frequently to see who the logged in user is and their roles. Use jwt decode, and useSelector to find current token of logged in person for information.
 Created a requireAuth wrapper that stops pages from showing if the person is not logged in.
+
+lesson 12
+refactored a bit - user model's roles changed. 
+Can stop using async handler to require('express-async-errors'). Then you don't need to do any asyncHandler wrapping, just require at top of server.js and its done.
+In frontend, changed prefetching somehow... and changed useSelector in Note.js, User.js, EditNote.js, NewNote.js to do a query instead.
+Memoised User and Note so doesnt rerender all the time.
+Can set title on different pages now, and can put loading spinner where appropriate.

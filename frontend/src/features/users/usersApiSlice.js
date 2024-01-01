@@ -12,10 +12,12 @@ const initialState = usersAdapter.getInitialState()
 export const usersApiSlice = apiSlice.injectEndpoints({
     endpoints: builder => ({
         getUsers: builder.query({
-            query: () => '/users',
-            validateStatus: (response, result) => {
-                return response.status === 200 && !result.isError // rrecommended way fo chceking - can have error with 200 status.
-            },
+            query: () => ({
+                url: '/users',
+                validateStatus: (response, result) => {
+                    return response.status === 200 && !result.isError // rrecommended way fo chceking - can have error with 200 status.
+                },
+            }),
             // keepUnusedDataFor: 5, 
             // default 60 seconds. Whether data will be refered to in cache or if needs new data.
             // i.e if there are no subscriptions, data is useless and will refresh in some time
