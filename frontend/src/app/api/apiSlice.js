@@ -2,7 +2,7 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 import { setCredentials } from '../../features/auth/authSlice'
 
 const baseQuery = fetchBaseQuery({ //not only baseUrl field, but two other fields for JWT's.
-    baseUrl: 'http://technotes-api.onrender.com',
+    baseUrl: 'https://technotes-api.onrender.com', //use https instead of http
     credentials: 'include', //will always send cookie. Now with this, navigating to get notes will use the cookie to get notes.
     prepareHeaders: (headers, { getState }) => {
         const token = getState().auth.token

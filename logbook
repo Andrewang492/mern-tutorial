@@ -41,3 +41,10 @@ lesson 13 deployment
 Get fvilers disable react devtools to stop devtools (in index.js)
 Change store.js to remove redux devtools.
 Change url in apiSlice to technotes-api.onrender.com
+Used render.com to deploy. Statically first.
+    had to add a rule: rewrite /* to index.html
+
+Then for backend
+Change our allowed origins.
+In corsOptions, !origin allows postman to use. Remove to remove postman access.
+Create a web service on render.com. Make sure to add environment variables.
