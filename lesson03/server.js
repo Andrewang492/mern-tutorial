@@ -1,4 +1,5 @@
 require('dotenv').config() // can use environment variables in rest API. everywhere. Do not want stored in github. Stored in .env file. 
+require('express-async-errors')
 const express = require('express')
 const app = express()
 const path = require('path')

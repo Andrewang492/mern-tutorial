@@ -8,7 +8,7 @@ const errorHandler = (err, req, res, next) => {
 
     res.status(status)
 
-    res.json({ message: err.message })
+    res.json({ message: err.message, isError: true }) //isError lets API know we found an error. Other errors already show this flag.
 }
 
 module.exports = errorHandler 

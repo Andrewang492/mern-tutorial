@@ -1,13 +1,12 @@
 const Note = require('../models/Note')
 const User = require('../models/User')
-const asyncHandler = require('express-async-handler')
 
 // The AutoIncrement in models/Note doesn't work.
 
 // @desc Get all notes 
 // @route GET /notes
 // @access Private
-const getAllNotes = asyncHandler(async (req, res) => {
+const getAllNotes = async (req, res) => {
     // Get all notes from MongoDB
     const notes = await Note.find().lean()
 
@@ -32,12 +31,12 @@ const getAllNotes = asyncHandler(async (req, res) => {
     }))
 
     res.json(notesWithUser) //TODO how does this work? its a function?
-})
+}
 
 // @desc Create new note
 // @route POST /notes
 // @access Private
-const createNewNote = asyncHandler(async (req, res) => {
+const createNewNote = async (req, res) => {
     const { user, title, text } = req.body
 
     // Confirm data
@@ -46,7 +45,7 @@ const createNewNote = asyncHandler(async (req, res) => {
     }
 
     // Check for duplicate title
-    const duplicate = await Note.findOne({ title }).lean().exec()
+    const duplicate = await Note.findOne({ title }).collation({ locale: 'en', strength: 2 }).lean().exec()
 
     if (duplicate) {
         return res.status(409).json({ message: 'Duplicate note title' })
@@ -61,12 +60,12 @@ const createNewNote = asyncHandler(async (req, res) => {
         return res.status(400).json({ message: 'Invalid note data received' })
     }
 
-})
+}
 
 // @desc Update a note
 // @route PATCH /notes
 // @access Private
-const updateNote = asyncHandler(async (req, res) => {
+const updateNote = async (req, res) => {
     const { id, user, title, text, completed } = req.body
 
     // Confirm data
@@ -82,7 +81,7 @@ const updateNote = asyncHandler(async (req, res) => {
     }
 
     // Check for duplicate title
-    const duplicate = await Note.findOne({ title }).lean().exec()
+    const duplicate = await Note.findOne({ title }).collation({ locale: 'en', strength: 2 }).lean().exec()
 
     // Allow renaming of the original note 
     if (duplicate && duplicate?._id.toString() !== id) {
@@ -97,12 +96,12 @@ const updateNote = asyncHandler(async (req, res) => {
     const updatedNote = await note.save()
 
     res.json(`'${updatedNote.title}' updated`)
-})
+}
 
 // @desc Delete a note
 // @route DELETE /notes
 // @access Private
-const deleteNote = asyncHandler(async (req, res) => {
+const deleteNote = async (req, res) => {
     const { id } = req.body
 
     // Confirm data
@@ -122,7 +121,7 @@ const deleteNote = asyncHandler(async (req, res) => {
     const reply = `Note '${note.title}' with ID ${note._id} deleted`
 
     res.json(reply)
-})
+}
 
 module.exports = {
     getAllNotes,
