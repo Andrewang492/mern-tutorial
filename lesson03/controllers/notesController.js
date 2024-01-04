@@ -21,13 +21,16 @@ const getAllNotes = async (req, res) => {
     const notesWithUser = await Promise.all(notes.map(async (note) => {
         // console.log(`${note.user}`)
         // console.log(note.user.toString())
-        const user = await User.find({_id: note.user}).lean().exec()
-        // TODO would like to find using findById function.
+        
+        const user = await User.findById(note.user.toString()).lean().exec()
+        console.log('user2 is:')
+        console.log(user)
+        console.log(user.username)
+        return { ...note, username: user.username }
 
-        // const user = await User.findById(note.user.toString()).lean().exec()
-        // console.log(user[0]) // find returns an array it seems.
-        console.log({...note, username: user[0].username })
-        return { ...note, username: user[0].username }
+        //logic for using find() instead of findbyId:
+        // const user = await User.find({_id: note.user}).lean().exec()
+        // return { ...note, username: user[0].username }
     }))
 
     res.json(notesWithUser) //TODO how does this work? its a function?
