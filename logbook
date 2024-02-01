@@ -3,11 +3,18 @@ Set up backend, by installing nodemon and express. Create a server.js file that 
 Tell it what to use, for static files, and for the root (main) page (by also writing root.js).
 Write any html files necessary that you are sending back as response.
 
+lesson 2 Middleware
+app.use() for the static files was already an example of middleware. Use express.json() is an example that now lets us receive and parse json data.
+Created a logging middleware - they are fucntions with req, res and next parameters. Also made errorHandler middleware, that also changed the res.
+Used cookie-parser library as a middleware. This lets you parse middleware.
+Created CORS (installed cors) to allow requests from stated origins. You need a corsOptions object for it.
+
 lesson3
 Learnt how to set up mongoDB.
-Need to install mongoose package.
+Need to install mongoose package. This helps communicate with mongoDB easier and is necessary for our models.
 Learnt about environment variables using dotenv package.
 Created Note and User models. These are schemas for MongoDB.
+Create the dbConn.js and put it in the server.js.
 
 lesson04
 add routing for User model/schema. Need routing and controllers.

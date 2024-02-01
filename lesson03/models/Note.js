@@ -6,7 +6,7 @@ const { AutoIncrementID } = require('@typegoose/auto-increment')
 const noteSchema = new mongoose.Schema(
     {
         user: {
-            type: mongoose.Schema.Types.ObjectId, //taking a type from another schema..
+            type: mongoose.Schema.Types.ObjectId, //taking a type from another schema. This code says: a type of id from another schema
             required: true,
             ref: 'User' //the schema specified.
         },
