@@ -17,7 +17,7 @@ Created Note and User models. These are schemas for MongoDB.
 Create the dbConn.js and put it in the server.js.
 
 lesson04
-add routing for User model/schema. Need routing and controllers.
+add routing for User model/schema. Need routing and controllers. Controllers give methods that routes (eg userRoutes.js) refer to when they are visited.
 install express-asyc-handler and bcrypt.
 Creating a controller (CRUD method for a route)
 Using Postman to test API.
