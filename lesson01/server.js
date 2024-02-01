@@ -7,7 +7,7 @@ app.use('/', express.static(path.join(__dirname, '/public'))); //where to find s
 
 app.use('/', require('./routes/root'));
 
-// always after all routes. Asterisk means all, anything can reach it.
+// always after all routes. Asterisk means all, anything can reach it. Rather than reading a file for a route like /routes/root above
 app.all('*', (req, res) => {
     res.status(404)
     if (req.accepts('html')) {

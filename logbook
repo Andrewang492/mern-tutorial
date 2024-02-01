@@ -1,3 +1,8 @@
+lesson 1
+Set up backend, by installing nodemon and express. Create a server.js file that creates the express app.
+Tell it what to use, for static files, and for the root (main) page (by also writing root.js).
+Write any html files necessary that you are sending back as response.
+
 lesson3
 Learnt how to set up mongoDB.
 Need to install mongoose package.
